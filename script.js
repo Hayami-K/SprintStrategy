@@ -5,14 +5,21 @@ function calculateSplits() {
         return;
     }
 
-    // ここでは、各区間の平均速度が同じと仮定しています。
-    const splits = [15, 10, 10, 10, 5]; // 各区間の距離
-    const totalDistance = splits.reduce((acc, val) => acc + val, 0);
-    const perMeterTime = totalTime / totalDistance; // 1メートルあたりの平均時間
+    // 各区間の係数
+    const coefficients = [
+        5.5/23, // 0~15m
+        5/23, // 15~25m
+        5/23, // 25~35m
+        5/23, // 35~45m
+        2.5/23  // 45~50m
+    ];
 
-    const results = splits.map((distance, index) => {
-        return `区間${index + 1} (${distance}m): ${(perMeterTime * distance).toFixed(2)}秒`;
+    // 各区間のタイムを計算
+    const splitTimes = coefficients.map((coefficient, index) => {
+        const timeForSplit = (totalTime * coefficient).toFixed(2);
+        return `区間${index + 1}: ${timeForSplit}秒`;
     });
 
-    document.getElementById('results').innerHTML = results.join('<br>');
+    document.getElementById('results').innerHTML = splitTimes.join('<br>');
 }
+
