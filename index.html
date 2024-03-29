@@ -11,7 +11,17 @@
         <h1>競泳タイム分析</h1>
         <input type="number" id="totalTime" placeholder="全体のタイムを秒で入力">
         <button onclick="calculateSplits()">分割タイム計算</button>
-        <div id="results"></div>
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>区間</th>
+                    <th>タイム (秒)</th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody">
+                <!-- 結果がここに挿入されます -->
+            </tbody>
+        </table>
     </div>
     <script src="script.js"></script>
 </body>
